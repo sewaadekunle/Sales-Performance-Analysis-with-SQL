@@ -173,3 +173,6 @@ ORDER BY 2 DESC;
 **Approach**
 
 Customer spending was aggregated and ranked to identify high-value customers.
+
+![Question5](<img width="481" height="335" alt="image" src="https://github.com/user-attachments/assets/43c4b76b-049e-48bc-825a-51ad36862218" />
+)

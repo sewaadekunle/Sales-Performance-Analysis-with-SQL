@@ -215,3 +215,14 @@ ORDER BY 2 DESC;
   
 Using window functions, I ranked products by sales volume and total revenue to compare how pricing relates to overall performance.
 
+![Question6{images/productperformance.PNG)
+
+**Key Findings**
+- Red Bull 12oz is the top-performing product by total revenue, generating 1,305,700, despite ranking 9th in sales volume, showing that higher-priced products can generate strong revenue without being the top in quantity sold
+- K Cups Daily Chef Columbian Supremo and K Cups Original Donut Shop Medium Roast also rank very high in total revenue, combining strong pricing with high sales volume.
+- Some lower-priced products, such as Pepsi 12 oz cans and Diet Coke 12 oz cans, rank very high in sales volume but do not top the revenue ranking, indicating that high volume does not always translate to the highest revenue.
+- Overall, products with higher average unit prices tend to rank higher in revenue, even when their sales volume is not the highest.
+
+**Insight**
+
+Product pricing plays a major role in revenue performance. High-priced products can generate top revenue even when they are not the highest in sales volume. This shows the importance of balancing pricing strategy and sales volume when evaluating product performance.

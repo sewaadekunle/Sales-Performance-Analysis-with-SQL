@@ -34,7 +34,7 @@ WITH product_sales AS (
  ORDER BY revenue_rank;
 ```
 
-**Approach:**
+**Approach**
 I used SQL aggregations to calculate total quantity sold and total revenue per product. Window functions were then applied to rank products by both sales volume and revenue, allowing for identification of top- and bottom-performing products.
 
 ![Question1](images/Top_performing_products.PNG)
@@ -62,5 +62,6 @@ ON s.store_key = f.store_key
 GROUP BY s.store_key, division, district
 ORDER BY total_revenue DESC;
 ```
-Approach:
+**Approach**
 I aggregated total transactions (quantity sold) and revenue at the store level and ranked stores and transaction volume to identify high-performing locations.
+![Question2](images/storeperformance.PNG)

@@ -4,6 +4,7 @@ The objective of this analysis is to identify key sales performance drivers acro
 The analysis is conducted on a star-schema–style dataset consisting of fact and dimension tables (transactions, customers, item, store, and time).
 
 **The Entity Relationship Diagram**
+![test](Images/fdh.PNG)
 
 ```sql
 WITH product_sales AS (

@@ -6,7 +6,7 @@ The analysis is conducted on a star-schema–style dataset consisting of fact an
 **The Entity Relationship Diagram**
 
 
-![test](images/ERD.PNG)
+![ERD](images/ERD.PNG)
 
 ## Business Questions & Analysis
 ### 1. Best-Performing Products by Sales Volume and Revenue

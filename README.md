@@ -226,3 +226,23 @@ Using window functions, I ranked products by sales volume and total revenue to c
 **Insight**
 
 Product pricing plays a major role in revenue performance. High-priced products can generate top revenue even when they are not the highest in sales volume. This shows the importance of balancing pricing strategy and sales volume when evaluating product performance.
+
+
+### 7. Supplier Revenue Contribution
+**Business Question: Which suppliers contribute the most revenue?**
+
+``` sql
+SELECT 
+	supplier,
+	SUM(quantity) AS total_quantity,
+	SUM(total_price) AS total_revenue,
+	RANK()OVER (ORDER BY SUM(quantity) DESC) AS quantity_rank
+FROM item_dim i
+JOIN fact_table f
+	ON i.item_key = f.item_key
+GROUP by supplier
+ORDER BY 2 DESC;
+```
+
+**Approach**
+ I aggregated total quantity supplied and total revenue by supplier to evaluate supplier performance. Using a window function, suppliers were ranked based on the total quantity supplied, while revenue figures were used to compare overall financial contribution.

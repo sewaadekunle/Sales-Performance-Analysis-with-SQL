@@ -66,10 +66,14 @@ ORDER BY total_revenue DESC;
 I aggregated total transactions (quantity sold) and revenue at the store level and ranked stores and transaction volume to identify high-performing locations.
 
 ![Question2](images/storeperformance.PNG)
-
+![Question2](images/storeperformance2.PNG)
 Key Findings:
 - Store S0010 generates the highest total revenue, followed closely by S00601.
 - Store S00328 records the highest number of transactions, followed by S0010.
 - Store S00601 also performs strongly in transaction volume, ranking among the top stores.
  
 Stores S0010 and S00601 consistently rank high across both revenue and transaction metrics, indicating strong overall performance. These stores can be considered benchmark locations for identifying best practices and improving underperforming stores.
+
+
+### 3. Year-over-Year (YoY) Sales Performance
+**Business Question: How does sales performance change year over year?**

@@ -11,7 +11,7 @@ The analysis is conducted on a star-schema–style dataset consisting of fact an
 
 ## Business Questions & Analysis
 ### 1. Best-Performing Products by Sales Volume and Revenue
-Business Question: Which products generate the highest sales volume and total revenue?
+**Business Question: Which products generate the highest sales volume and total revenue?**
 
 
 ```sql
@@ -38,17 +38,20 @@ WITH product_sales AS (
 ```
 
 **Approach**
+
 I used SQL aggregations to calculate total quantity sold and total revenue per product. Window functions were then applied to rank products by both sales volume and revenue, allowing for identification of top- and bottom-performing products.
 
 ![Question1](images/Top_performing_products.PNG)
 
 **Key Findings:**
+
 - The Top 10 products ranked by total revenue show that Red Bull 12oz is the highest-revenue-generating product.
 - Red Bull 12oz is also ranked 5th in sales volume out of over 200 products, indicating strong performance in both revenue and quantity sold.
 
 This indicates strong performance across both pricing and demand. Additionally, ranking products by quantity sold reveals items that sell frequently even if they do not generate the highest revenue.
 
  **Recommendation**
+ 
 High-performing products like Red Bull 12oz should be prioritized for inventory planning, promotional campaigns, and strategic product placement. Products with high sales volume but lower revenue should be reviewed for pricing or bundling opportunities to maximize profitability.
 
 ### 2. Store Locations with Highest Revenue and Transactions
@@ -68,12 +71,14 @@ GROUP BY s.store_key, division, district
 ORDER BY total_revenue DESC;
 ```
 **Approach**
+
 I aggregated total transactions (quantity sold) and revenue at the store level and ranked stores and transaction volume to identify high-performing locations.
 
 ![Question2](images/storeperformance.PNG)
 ![Question2](images/storeperformance2.PNG)
 
 **Key Findings**
+
 - Store S0010 generates the highest total revenue, followed closely by S00601.
 - Store S00328 records the highest number of transactions, followed by S0010.
 - Store S00601 also performs strongly in transaction volume, ranking among the top stores.
@@ -81,6 +86,7 @@ I aggregated total transactions (quantity sold) and revenue at the store level a
 Stores S0010 and S00601 consistently rank high across both revenue and transaction metrics, indicating strong overall performance.  
 
 **Recommendation**
+
 Top-performing stores should be used as benchmark locations to identify best practices in operations, staffing, and merchandising. Insights from these stores can be applied to underperforming locations to improve overall store performance.
 
 
@@ -104,12 +110,14 @@ FROM yearly_sales
 ```
 
 **Approach**
+
 I created a view named complete_data containing sales records from 2014 to 2020 only. This was done to ensure accurate year-over-year comparisons, as data for 2021 was incomplete (January only).
 Using this view, I aggregated total revenue by year and applied the LAG() window function within a CTE to calculate Yearly revenue changes and Year-over-year (YoY) growth or decline percentages
 
 ![Question3](images/YoY_sales_performance.PNG)
 
 **Key Findings**
+
 - Sales remained relatively stable between 2014 and 2016, with gradual growth from ₦152,373.25 in 2014 to ₦158,356.25 in 2016.
 - In 2017, revenue declined by 7.11%, indicating a noticeable slowdown in performance.
 - 2018 recorded the strongest growth, with revenue increasing by 14.99%, representing the highest year-over-year growth in the period analyzed.

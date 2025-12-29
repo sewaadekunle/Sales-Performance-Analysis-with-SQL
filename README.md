@@ -246,3 +246,15 @@ ORDER BY 2 DESC;
 
 **Approach**
  I aggregated total quantity supplied and total revenue by supplier to evaluate supplier performance. Using a window function, suppliers were ranked based on the total quantity supplied, while revenue figures were used to compare overall financial contribution.
+
+
+![Question7](images/supplierscontribution.PNG
+
+**Key Findings**
+
+- DENIMACH LTD is the top-performing supplier, supplying 772,031 units and generating the highest revenue (13,337,300.50).
+- Indo Count Industries Ltd closely follows, contributing 730,625 units and 13,159,323.25 in revenue.
+- BIGSO AB, despite ranking 6th in quantity supplied, generated 11,746,920.00 in revenue, showing strong revenue performance relative to volume.
+- Overall, the top 10 suppliers contribute a significant portion of total sales, indicating a strong dependence on a relatively small supplier base.
+
+Supplier performance differs between volume supplied and revenue generated. While high-volume suppliers tend to drive revenue, some suppliers generate strong revenue with lower quantities, highlighting the importance of evaluating both metrics when managing supplier relationships.

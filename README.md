@@ -37,8 +37,30 @@ WITH product_sales AS (
 **Approach:**
 I used SQL aggregations to calculate total quantity sold and total revenue per product. Window functions were then applied to rank products by both sales volume and revenue, allowing for identification of top- and bottom-performing products.
 
+![Question1](images/Top_performing_products.PNG)
+
 **Key Findings:**
-•	The Top 10 products ranked by total revenue show that Red Bull 12oz is the highest-revenue-generating product.
-•	Red Bull 12oz is also ranked 5th in sales volume out of over 200 products, indicating strong performance in both revenue and quantity sold.
-•	Changing the final query order to ORDER BY quantity_rank allows identification of the top products based on sales volume instead of revenue.
+- The Top 10 products ranked by total revenue show that Red Bull 12oz is the highest-revenue-generating product.
+- Red Bull 12oz is also ranked 5th in sales volume out of over 200 products, indicating strong performance in both revenue and quantity sold.
+
+Changing the final query order to ORDER BY quantity_rank allows identification of the top products based on sales volume instead of revenue.
 Focusing on these top-performing products can help improve inventory planning and marketing effectiveness.
+
+### 2. Store Locations with Highest Revenue and Transactions
+**Business Question: Which store locations generate the highest revenue and number of transactions?**
+
+```sql
+SELECT 
+		s.store_key, 
+		s.division, 
+		s.district,
+		SUM(f.quantity) AS total_transactions,
+		SUM(f.total_price) AS total_revenue
+FROM store_dim s
+JOIN fact_table f
+ON s.store_key = f.store_key
+GROUP BY s.store_key, division, district
+ORDER BY total_revenue DESC;
+```
+Approach:
+I aggregated total transactions (quantity sold) and revenue at the store level and ranked stores and transaction volume to identify high-performing locations.

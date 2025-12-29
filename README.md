@@ -215,7 +215,7 @@ ORDER BY 2 DESC;
   
 Using window functions, I ranked products by sales volume and total revenue to compare how pricing relates to overall performance.
 
-![Question6{images/productperformance.PNG)
+![Question6](images/productperformance.PNG)
 
 **Key Findings**
 - Red Bull 12oz is the top-performing product by total revenue, generating 1,305,700, despite ranking 9th in sales volume, showing that higher-priced products can generate strong revenue without being the top in quantity sold

@@ -342,3 +342,30 @@ A repeat purchase rate of 44.66% suggests a moderate level of customer loyalty, 
 
 
 
+### 10. Which store locations are experiencing the highest year-over-year growth or decline in revenue?
+
+``` sql
+WITH store_performance AS (
+	SELECT  
+		division,
+		year,
+		SUM(total_price) AS revenue
+	FROM store_dim s
+	JOIN fact_table f
+		ON s.store_key =f.store_key
+	JOIN time_dim t
+		ON t.time_key = f.time_key
+	GROUP BY division, year
+) 
+SELECT 
+	division,
+	year,
+	revenue,
+	ROUND(
+	(revenue - LAG(revenue, 1) OVER(PARTITION BY division ORDER BY year))
+	/LAG(revenue, 1) OVER(PARTITION BY division ORDER BY year)
+	* 100.0,
+	2)
+FROM store_performance
+WHERE year != '2024';
+```

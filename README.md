@@ -126,7 +126,7 @@ ORDER BY 2 DESC;
 
 --Monthly Sales Trend
 SELECT 
-	DATE_PART('month',date),
+	DATE_PART('month',date) AS month,
 	SUM(total_price) AS total_sales
 FROM complete_data
 GROUP BY DATE_PART('month',date)

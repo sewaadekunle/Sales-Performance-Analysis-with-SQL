@@ -334,7 +334,7 @@ FROM purchase_days
 
 Customer purchase behavior was analyzed by counting the number of distinct purchase days per customer. Customers with more than one purchase day were classified as repeat buyers. The percentage of repeat customers was calculated by dividing the number of repeat buyers by the total number of customers.
 
-
+![Question9](images/purchasebehaviour.PNG)
 
 **Insight**
 A repeat purchase rate of 44.66% suggests a moderate level of customer loyalty, but also highlights room for improvement. Targeted retention strategies such as loyalty programs, personalized promotions, and follow-up campaigns could help convert more one-time buyers into repeat customers and drive sustained revenue growth.

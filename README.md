@@ -110,3 +110,28 @@ Using this view, I aggregated total revenue by year and applied the LAG() window
 
 Sales performance fluctuated over the years, with periods of both strong growth and sharp decline. The recovery observed in 2020 indicates improved performance after a weak 2019, highlighting the importance of monitoring year-over-year trends to identify risks early and plan corrective actions.
 
+
+### 4. Weekly and Monthly Sales Trends
+**Business Question: Which weeks and months show the strongest sales performance?**
+
+``` sql
+--Weekly Sales Trend
+SELECT 
+	week,
+	SUM(total_price) AS total_sales
+FROM complete_data
+GROUP BY week
+ORDER BY 2 DESC;
+
+
+--Monthly Sales Trend
+SELECT 
+	DATE_PART('month',date),
+	SUM(total_price) AS total_sales
+FROM complete_data
+GROUP BY DATE_PART('month',date)
+ORDER BY 2 DESC;
+```
+
+**Approach**
+Using the complete_data view, I aggregated total sales by week of the month and by month to identify periods with the highest sales performance. This helps reveal short-term sales patterns within a month as well as broader monthly trends.

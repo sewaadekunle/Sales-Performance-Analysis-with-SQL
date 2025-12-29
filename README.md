@@ -135,3 +135,7 @@ ORDER BY 2 DESC;
 
 **Approach**
 Using the complete_data view, I aggregated total sales by week of the month and by month to identify periods with the highest sales performance. This helps reveal short-term sales patterns within a month as well as broader monthly trends.
+
+![Question4](images/weeklysalestrend.PNG)
+
+!(Question4)

@@ -298,6 +298,7 @@ WHERE prev_year_sale IS NOT NULL AND prev_year_sale > total_revenue
 
 Sales data was aggregated by product and year, and total annual revenue was calculated for each product. The LAG() function was then used to compare each product’s revenue with the previous year’s revenue. Products were identified as declining when their current-year revenue was lower than the prior year, focusing only on years with complete data.
 
+![Question8](images/underprforming products.PNG)
 
 **Key Findings**
 

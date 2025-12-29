@@ -9,6 +9,15 @@ The analysis is conducted on a star-schema–style dataset consisting of fact an
 
 ![ERD](images/ERD.PNG)
 
+
+## Executive Summary
+
+This project analyzes retail sales data using SQL to uncover key patterns and trends across products, customers, suppliers, store locations, and time periods. By leveraging aggregations, joins, and window functions, the analysis identifies top-performing products and stores, evaluates year-over-year sales trends, examines customer purchasing behavior, and highlights areas of declining performance.
+
+The findings reveal that a small group of products, stores, customers, and suppliers contribute a disproportionate share of total revenue, while sales performance varies significantly across time and locations. Seasonal patterns, pricing dynamics, and repeat purchase behavior were also identified as important factors influencing overall performance.
+
+The insights from this analysis support data-driven recommendations focused on inventory optimization, targeted marketing, customer retention, supplier management, and location-specific performance strategies. Overall, the project demonstrates the ability to translate raw transactional data into actionable business insights using SQL.
+
 ## Business Questions & Analysis
 ### 1. Best-Performing Products by Sales Volume and Revenue
 **Business Question: Which products generate the highest sales volume and total revenue?**

@@ -371,4 +371,18 @@ FROM store_performance
 WHERE year != '2024';
 ```
 
+**Approach**
+
+Sales revenue was aggregated by store division and year to measure annual performance. Using the LAG() window function, each year’s revenue was compared with the previous year to calculate year-over-year (YoY) growth rates for each store location. The analysis focuses on identifying periods of strong growth as well as significant declines.
+
 ![Question10](images/storelocaation.PNG)
+
+**Key Insights**
+
+- Store performance shows significant year-over-year fluctuations across all divisions.
+- Rangpur, Rajshahi, and Khulna recorded the strongest growth rates in certain years, indicating periods of strong store performance
+- Dhaka and Chittagong, despite having higher absolute revenue, experienced notable declines in some years.
+- Most divisions recorded sharp revenue drops in 2021, suggesting reduced operations or incomplete yearly data.
+- The mixed performance across locations highlights the importance of store-level strategies rather than a one-size-fits-all approach.
+
+These fluctuations highlight the need for location-specific performance monitoring, allowing management to reinforce strategies in high-growth stores while addressing operational or market challenges in consistently declining locations.

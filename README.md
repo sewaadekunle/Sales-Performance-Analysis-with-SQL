@@ -67,7 +67,8 @@ I aggregated total transactions (quantity sold) and revenue at the store level a
 
 ![Question2](images/storeperformance.PNG)
 ![Question2](images/storeperformance2.PNG)
-Key Findings:
+
+**Key Findings**
 - Store S0010 generates the highest total revenue, followed closely by S00601.
 - Store S00328 records the highest number of transactions, followed by S0010.
 - Store S00601 also performs strongly in transaction volume, ranking among the top stores.
@@ -77,3 +78,19 @@ Stores S0010 and S00601 consistently rank high across both revenue and transacti
 
 ### 3. Year-over-Year (YoY) Sales Performance
 **Business Question: How does sales performance change year over year?**
+``` sql
+WITH yearly_sales AS (
+	SELECT
+		DATE_PART('Year', date) AS year,
+		SUM(total_price) as yearly_revenue
+	FROM complete_data
+	GROUP BY DATE_PART('Year', date)
+)
+SELECT 
+	year,
+	yearly_revenue,
+	yearly_revenue - LAG(yearly_revenue, 1) OVER(ORDER BY year),
+	ROUND(((yearly_revenue - LAG(yearly_revenue, 1) OVER(ORDER BY year)) /
+	LAG(yearly_revenue, 1) OVER(ORDER BY year) * 100), 2) 
+FROM yearly_sales
+```

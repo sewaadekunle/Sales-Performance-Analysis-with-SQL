@@ -141,13 +141,33 @@ Using the complete_data view, I aggregated total sales by week of the month and 
 ![Question4](images/Monthlysalestrend.PNG)
 
 **Key Findings**
-Weekly Sales Trend
+
+**Weekly Sales Trend**
 - The 4th week of the month generated the highest sales, with total revenue of 354,102.25.
 - Sales gradually increased from the 1st week to the 4th week, indicating stronger customer activity toward the end of the month.
-Monthly Sales Trend
+- 
+**Monthly Sales Trend**
 - June (Month 6) recorded the highest monthly sales, with total revenue of 109,765.75.
 - May (Month 5) and November (Month 11) also showed strong performance.
 - February (Month 2) and September (Month 9) recorded the lowest sales across the year.
 **Insight**
 Sales tend to be stronger toward the end of each month, with the 4th week consistently outperforming earlier weeks. On a monthly level, sales peak around mid-year, particularly in June, while some months show noticeably lower performance.
 
+
+
+### 5. Highest-Spending Customers
+**Business Question: Who are the top-spending customers and how much do they contribute to revenue?**
+``` sql
+SELECT 
+	c.name,
+	SUM(f.total_price) AS total_amount_spent
+FROM customers c
+JOIN fact_table f
+	ON f.customer_key = c.customer_key
+WHERE c.name IS NOT NULL
+GROUP BY c.name
+ORDER BY 2 DESC;
+```
+
+**Approach**
+Customer spending was aggregated and ranked to identify high-value customers.

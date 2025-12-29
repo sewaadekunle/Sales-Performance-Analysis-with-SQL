@@ -94,3 +94,18 @@ SELECT
 	LAG(yearly_revenue, 1) OVER(ORDER BY year) * 100), 2) 
 FROM yearly_sales
 ```
+
+**Approach**
+I created a view named complete_data containing sales records from 2014 to 2020 only. This was done to ensure accurate year-over-year comparisons, as data for 2021 was incomplete (January only).
+Using this view, I aggregated total revenue by year and applied the LAG() window function within a CTE to calculate Yearly revenue changes and Year-over-year (YoY) growth or decline percentages
+
+
+**Key Findings**
+- Sales remained relatively stable between 2014 and 2016, with gradual growth from ₦152,373.25 in 2014 to ₦158,356.25 in 2016.
+- In 2017, revenue declined by 7.11%, indicating a noticeable slowdown in performance.
+- 2018 recorded the strongest growth, with revenue increasing by 14.99%, representing the highest year-over-year growth in the period analyzed.
+- Sales dropped sharply in 2019, declining by 23.96%, which marks the largest decrease across all years.
+- In 2020, revenue recovered by 15.79%, suggesting a partial rebound following the significant decline in 2019.
+
+Sales performance fluctuated over the years, with periods of both strong growth and sharp decline. The recovery observed in 2020 indicates improved performance after a weak 2019, highlighting the importance of monitoring year-over-year trends to identify risks early and plan corrective actions.
+

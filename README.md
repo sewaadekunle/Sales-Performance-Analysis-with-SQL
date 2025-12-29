@@ -174,5 +174,44 @@ ORDER BY 2 DESC;
 
 Customer spending was aggregated and ranked to identify high-value customers.
 
-![Question5](<img width="481" height="335" alt="image" src="https://github.com/user-attachments/assets/43c4b76b-049e-48bc-825a-51ad36862218" />
+![Question5](images/topcutomers.PNG)
+
+
+**Insight**: High-value customers present opportunities for loyalty and retention programs.
+
+
+### 6. Product Price vs Performance
+**Business Question: How do product prices relate to sales volume and revenue?**
+
+``` sql
+WITH product_performance AS (
+	SELECT 	
+		i.item_name,
+		ROUND(AVG(f.unit_price),2) AS avg_unit_price,
+		SUM(quantity) AS total_quantity_sold,
+		SUM(total_price) AS total_revenue
+	FROM item_dim i
+	JOIN fact_table f
+		ON i.item_key = f.item_key
+	GROUP BY item_name	 
 )
+SELECT
+	item_name,
+	avg_unit_price,
+	total_quantity_sold,
+	total_revenue,
+	RANK() OVER(ORDER BY total_quantity_sold DESC) AS quantity_rank,
+	RANK() OVER(ORDER BY total_revenue DESC) AS sales_rank
+FROM product_performance
+ORDER BY 2 DESC;
+```
+
+**Approach**
+
+ I created a CTE called product_performance to calculate, for each product:
+- Average unit price
+- Total quantity sold
+- Total revenue
+  
+Using window functions, I ranked products by sales volume and total revenue to compare how pricing relates to overall performance.
+

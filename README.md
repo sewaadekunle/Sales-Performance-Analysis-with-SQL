@@ -312,7 +312,7 @@ Management can use this insight to review pricing, promotions, or product releva
 
 
 ### 9. Customer Repeat Purchase Behavior
-**--9. What percentage of customers are repeat buyers, and how many customers purchase more than once?**
+**9. What percentage of customers are repeat buyers, and how many customers purchase more than once?**
 
 ``` sql
 WITH purchase_days AS (
@@ -337,6 +337,7 @@ Customer purchase behavior was analyzed by counting the number of distinct purch
 ![Question9](images/purchasebehaviour.PNG)
 
 **Insight**
+
 A repeat purchase rate of 44.66% suggests a moderate level of customer loyalty, but also highlights room for improvement. Targeted retention strategies such as loyalty programs, personalized promotions, and follow-up campaigns could help convert more one-time buyers into repeat customers and drive sustained revenue growth.
 
 
@@ -369,3 +370,5 @@ SELECT
 FROM store_performance
 WHERE year != '2024';
 ```
+
+![Question10](images/storelocaation.PNG)

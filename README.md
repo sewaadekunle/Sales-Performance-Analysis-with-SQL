@@ -1,7 +1,8 @@
 # Sales-Performance-Analysis-with-SQL
 ## Project Overview
-The objective of this analysis is to identify key sales performance drivers across products, customers, suppliers, stores, and time periods. Using SQL, the project uncovers insights that support revenue optimization and operational decision-making.
-The analysis is conducted on a star-schema–style dataset consisting of fact and dimension tables (transactions, customers, item, store, and time).
+The objective of this analysis is to identify key factors influencing sales performance across products, customers, suppliers, store locations, and time periods. Using SQL, the project uncovers actionable insights that support revenue optimization, operational efficiency, and strategic decision-making.
+
+The analysis is conducted on a star-schema–style dataset consisting of fact and dimension tables, including transactions, customers, items, stores, and time.
 
 **The Entity Relationship Diagram**
 
@@ -31,7 +32,9 @@ WITH product_sales AS (
 	RANK() OVER(ORDER BY total_quantity DESC) AS quantity_rank,
 	RANK() OVER (ORDER BY total_revenue DESC) AS revenue_rank	
  FROM product_sales
- ORDER BY revenue_rank;
+ ORDER BY revenue_rank
+ --we can know underperforming products by revenue, by ordering by qntity rank, we can see product performance by quantitysold.
+;
 ```
 
 **Approach**
@@ -43,8 +46,10 @@ I used SQL aggregations to calculate total quantity sold and total revenue per p
 - The Top 10 products ranked by total revenue show that Red Bull 12oz is the highest-revenue-generating product.
 - Red Bull 12oz is also ranked 5th in sales volume out of over 200 products, indicating strong performance in both revenue and quantity sold.
 
-Changing the final query order to ORDER BY quantity_rank allows identification of the top products based on sales volume instead of revenue.
-Focusing on these top-performing products can help improve inventory planning and marketing effectiveness.
+This indicates strong performance across both pricing and demand. Additionally, ranking products by quantity sold reveals items that sell frequently even if they do not generate the highest revenue.
+
+ **Recommendation**
+High-performing products like Red Bull 12oz should be prioritized for inventory planning, promotional campaigns, and strategic product placement. Products with high sales volume but lower revenue should be reviewed for pricing or bundling opportunities to maximize profitability.
 
 ### 2. Store Locations with Highest Revenue and Transactions
 **Business Question: Which store locations generate the highest revenue and number of transactions?**
@@ -73,7 +78,10 @@ I aggregated total transactions (quantity sold) and revenue at the store level a
 - Store S00328 records the highest number of transactions, followed by S0010.
 - Store S00601 also performs strongly in transaction volume, ranking among the top stores.
  
-Stores S0010 and S00601 consistently rank high across both revenue and transaction metrics, indicating strong overall performance. These stores can be considered benchmark locations for identifying best practices and improving underperforming stores.
+Stores S0010 and S00601 consistently rank high across both revenue and transaction metrics, indicating strong overall performance.  
+
+**Recommendation**
+Top-performing stores should be used as benchmark locations to identify best practices in operations, staffing, and merchandising. Insights from these stores can be applied to underperforming locations to improve overall store performance.
 
 
 ### 3. Year-over-Year (YoY) Sales Performance
@@ -108,8 +116,13 @@ Using this view, I aggregated total revenue by year and applied the LAG() window
 - Sales dropped sharply in 2019, declining by 23.96%, which marks the largest decrease across all years.
 - In 2020, revenue recovered by 15.79%, suggesting a partial rebound following the significant decline in 2019.
 
-Sales performance fluctuated over the years, with periods of both strong growth and sharp decline. The recovery observed in 2020 indicates improved performance after a weak 2019, highlighting the importance of monitoring year-over-year trends to identify risks early and plan corrective actions.
+ **Insight**
 
+Sales performance remained relatively stable from 2014 to 2016, followed by a decline in 2017. The strongest growth occurred in 2018, while 2019 experienced a sharp revenue drop. A recovery in 2020 suggests improved performance after the 2019 downturn, though volatility remains evident.
+
+**Recommendation**
+
+Management should closely monitor year-over-year trends to identify early warning signs of decline. Periods of strong growth, such as 2018, should be analyzed to understand the drivers behind performance improvements and replicate successful strategies during weaker years.
 
 ### 4. Weekly and Monthly Sales Trends
 **Business Question: Which weeks and months show the strongest sales performance?**
@@ -152,8 +165,12 @@ Using the complete_data view, I aggregated total sales by week of the month and 
 - February (Month 2) and September (Month 9) recorded the lowest sales across the year.
   
 **Insight**
-Sales tend to be stronger toward the end of each month, with the 4th week consistently outperforming earlier weeks. On a monthly level, sales peak around mid-year, particularly in June, while some months show noticeably lower performance.
 
+Sales consistently peak during the 4th week of each month, indicating increased customer activity toward month-end. On a monthly level, June records the highest sales, while February and September show the weakest performance.
+
+**Recommendation**
+
+Marketing campaigns, promotions, and inventory restocking should be aligned with end-of-month demand spikes. Lower-performing months present opportunities for targeted promotions or seasonal strategies to stabilize revenue throughout the year.
 
 
 ### 5. Highest-Spending Customers
@@ -178,6 +195,10 @@ Customer spending was aggregated and ranked to identify high-value customers.
 
 
 **Insight**: High-value customers present opportunities for loyalty and retention programs.
+
+**Recommendation**
+
+High-value customers should be targeted with loyalty programs, exclusive offers, and personalized engagement strategies to improve retention and increase lifetime value.
 
 
 ### 6. Product Price vs Performance
@@ -225,7 +246,11 @@ Using window functions, I ranked products by sales volume and total revenue to c
 
 **Insight**
 
-Product pricing plays a major role in revenue performance. High-priced products can generate top revenue even when they are not the highest in sales volume. This shows the importance of balancing pricing strategy and sales volume when evaluating product performance.
+Higher-priced products, such as Red Bull 12oz and premium K-Cup variants, generate top revenue even when they are not the highest in sales volume. Conversely, lower-priced products achieve high sales volumes but do not necessarily lead in revenue contribution.
+
+ 
+**Recommendation**
+Product performance should be evaluated using both pricing and volume metrics. Management should consider maintaining premium pricing for high-performing products while exploring upselling or margin optimization strategies for high-volume, low-revenue items.
 
 
 ### 7. Supplier Revenue Contribution
@@ -257,8 +282,14 @@ ORDER BY 2 DESC;
 - BIGSO AB, despite ranking 6th in quantity supplied, generated 11,746,920.00 in revenue, showing strong revenue performance relative to volume.
 - Overall, the top 10 suppliers contribute a significant portion of total sales, indicating a strong dependence on a relatively small supplier base.
 
-Supplier performance differs between volume supplied and revenue generated. While high-volume suppliers tend to drive revenue, some suppliers generate strong revenue with lower quantities, highlighting the importance of evaluating both metrics when managing supplier relationships.
+**Insight**
 
+A small number of suppliers account for a significant portion of total sales. While high-volume suppliers generally drive revenue, some suppliers generate strong revenue despite supplying fewer units, indicating higher-value products.
+
+
+**Recommendation**
+
+Supplier evaluations should consider both volume and revenue contribution. Strong revenue-generating suppliers with lower volumes may warrant closer partnerships, while dependence on a small supplier base highlights the need for supplier risk management and diversification.
 
 ### 8. Products with Declining Sales (Year-over-Year)
 **Business Question: Which products are experiencing a decline in sales over time based on year-over-year revenue?**
@@ -308,7 +339,15 @@ Sales data was aggregated by product and year, and total annual revenue was calc
 - The presence of declining trends highlights opportunities for pricing review, targeted promotions, or product repositioning.
 - Monitoring these products is important to prevent long-term revenue erosion and to support better product portfolio decisions.
 
-Management can use this insight to review pricing, promotions, or product relevance, and decide whether to revitalize these products or reallocate focus to more stable or growing items.
+
+**Insight**
+
+Several products show consistent year-over-year revenue declines, suggesting weakening performance over time. Some of these products still maintain relatively high sales volumes, indicating gradual rather than sudden demand erosion.
+
+**Recommendation**
+
+Declining products should be reviewed for pricing adjustments, targeted promotions, or repositioning strategies. Persistent declines may signal the need to phase out certain products and reallocate resources to more stable or growing items.
+
 
 
 ### 9. Customer Repeat Purchase Behavior
@@ -336,9 +375,14 @@ Customer purchase behavior was analyzed by counting the number of distinct purch
 
 ![Question9](images/purchasebehaviour.PNG)
 
+
 **Insight**
 
-A repeat purchase rate of 44.66% suggests a moderate level of customer loyalty, but also highlights room for improvement. Targeted retention strategies such as loyalty programs, personalized promotions, and follow-up campaigns could help convert more one-time buyers into repeat customers and drive sustained revenue growth.
+Approximately 44.66% of customers are repeat buyers, indicating a moderate level of customer loyalty but also a large proportion of one-time purchasers.
+
+**Recommendation**
+
+Retention initiatives such as loyalty programs, personalized promotions, and post-purchase follow-ups can help increase repeat purchase rates and drive more sustainable revenue growth.
 
 
 
@@ -385,4 +429,12 @@ Sales revenue was aggregated by store division and year to measure annual perfor
 - Most divisions recorded sharp revenue drops in 2021, suggesting reduced operations or incomplete yearly data.
 - The mixed performance across locations highlights the importance of store-level strategies rather than a one-size-fits-all approach.
 
-These fluctuations highlight the need for location-specific performance monitoring, allowing management to reinforce strategies in high-growth stores while addressing operational or market challenges in consistently declining locations.
+
+**Insight**
+
+Store divisions exhibit significant year-over-year fluctuations. Some regions demonstrate strong growth in specific years, while others experience notable declines despite higher overall revenue levels.
+
+
+**Recommendation**
+
+Store performance should be monitored at a location-specific level, allowing management to strengthen strategies in high-growth regions while addressing operational or market challenges in consistently underperforming areas.

@@ -311,3 +311,34 @@ Sales data was aggregated by product and year, and total annual revenue was calc
 Management can use this insight to review pricing, promotions, or product relevance, and decide whether to revitalize these products or reallocate focus to more stable or growing items.
 
 
+### 9. Customer Repeat Purchase Behavior
+**--9. What percentage of customers are repeat buyers, and how many customers purchase more than once?**
+
+``` sql
+WITH purchase_days AS (
+	SELECT 
+		customer_key,
+		COUNT(DISTINCT date) AS purchase_days
+	FROM fact_table f
+	JOIN time_dim t
+		ON t.time_key = f.time_key
+	GROUP BY customer_key
+)
+SELECT  
+	ROUND((COUNT(*) FILTER (WHERE purchase_days > 1) *100.0) / COUNT(*), 2)
+FROM purchase_days
+ ;
+```
+
+**Approach**
+
+Customer purchase behavior was analyzed by counting the number of distinct purchase days per customer. Customers with more than one purchase day were classified as repeat buyers. The percentage of repeat customers was calculated by dividing the number of repeat buyers by the total number of customers.
+
+
+
+**Insight**
+A repeat purchase rate of 44.66% suggests a moderate level of customer loyalty, but also highlights room for improvement. Targeted retention strategies such as loyalty programs, personalized promotions, and follow-up campaigns could help convert more one-time buyers into repeat customers and drive sustained revenue growth.
+
+
+
+

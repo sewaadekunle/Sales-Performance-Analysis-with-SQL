@@ -4,7 +4,14 @@ The objective of this analysis is to identify key sales performance drivers acro
 The analysis is conducted on a star-schema–style dataset consisting of fact and dimension tables (transactions, customers, item, store, and time).
 
 **The Entity Relationship Diagram**
-![test](Images/fdh.PNG)
+
+
+![test](images/ERD.PNG)
+
+## Business Questions & Analysis
+### 1. Best-Performing Products by Sales Volume and Revenue
+Business Question: Which products generate the highest sales volume and total revenue?
+
 
 ```sql
 WITH product_sales AS (
@@ -26,3 +33,6 @@ WITH product_sales AS (
  FROM product_sales
  ORDER BY revenue_rank;
 ```
+
+**Approach:**
+I used SQL aggregations to calculate total quantity sold and total revenue per product. Window functions were then applied to rank products by both sales volume and revenue, allowing for identification of top- and bottom-performing products.

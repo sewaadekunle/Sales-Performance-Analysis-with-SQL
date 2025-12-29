@@ -258,3 +258,55 @@ ORDER BY 2 DESC;
 - Overall, the top 10 suppliers contribute a significant portion of total sales, indicating a strong dependence on a relatively small supplier base.
 
 Supplier performance differs between volume supplied and revenue generated. While high-volume suppliers tend to drive revenue, some suppliers generate strong revenue with lower quantities, highlighting the importance of evaluating both metrics when managing supplier relationships.
+
+
+### 8. Products with Declining Sales (Year-over-Year)
+**Business Question: Which products are experiencing a decline in sales over time based on year-over-year revenue?**
+
+``` sql
+WITH yearly_product_performance AS (
+	SELECT 
+		item_name,
+		DATE_PART('Year', date) AS year,
+		SUM(total_price) AS total_revenue
+	FROM item_dim i
+	JOIN fact_table f ON i.item_key = f.item_key
+	JOIN time_dim t ON t.time_key = f.time_key
+	WHERE DATE_PART('Year', date) != '2021'
+	GROUP BY item_name, DATE_PART('Year', date)
+	ORDER BY item_name
+),
+trend AS (
+	SELECT 
+		item_name,
+		year,
+		total_revenue,
+		LAG(total_revenue,1)OVER(PARTITION BY item_name ORDER BY YEAR) AS prev_year_sale
+	FROM yearly_product_performance
+)
+SELECT
+	item_name,
+	year,
+	total_revenue,
+	prev_year_sale
+FROM trend
+WHERE prev_year_sale IS NOT NULL AND prev_year_sale > total_revenue
+;
+```
+
+**Approach**
+
+Sales data was aggregated by product and year, and total annual revenue was calculated for each product. The LAG() function was then used to compare each product’s revenue with the previous year’s revenue. Products were identified as declining when their current-year revenue was lower than the prior year, focusing only on years with complete data.
+
+
+**Key Findings**
+
+- Several products experienced year-over-year declines in revenue, indicating weakening sales performance over time.
+- The decline is trend-based rather than random, with some products showing repeated drops across multiple years.
+- Some declining products still record high sales volumes, suggesting demand exists but is gradually reducing.
+- The presence of declining trends highlights opportunities for pricing review, targeted promotions, or product repositioning.
+- Monitoring these products is important to prevent long-term revenue erosion and to support better product portfolio decisions.
+
+Management can use this insight to review pricing, promotions, or product relevance, and decide whether to revitalize these products or reallocate focus to more stable or growing items.
+
+

@@ -36,3 +36,9 @@ WITH product_sales AS (
 
 **Approach:**
 I used SQL aggregations to calculate total quantity sold and total revenue per product. Window functions were then applied to rank products by both sales volume and revenue, allowing for identification of top- and bottom-performing products.
+
+**Key Findings:**
+•	The Top 10 products ranked by total revenue show that Red Bull 12oz is the highest-revenue-generating product.
+•	Red Bull 12oz is also ranked 5th in sales volume out of over 200 products, indicating strong performance in both revenue and quantity sold.
+•	Changing the final query order to ORDER BY quantity_rank allows identification of the top products based on sales volume instead of revenue.
+Focusing on these top-performing products can help improve inventory planning and marketing effectiveness.

@@ -446,3 +446,9 @@ Store divisions exhibit significant year-over-year fluctuations. Some regions de
 **Recommendation**
 
 Store performance should be monitored at a location-specific level, allowing management to strengthen strategies in high-growth regions while addressing operational or market challenges in consistently underperforming areas.
+
+
+
+## Conclusion
+
+This analysis demonstrates how SQL can be used to transform raw transactional data into actionable business insights. By examining performance across products, customers, suppliers, stores, and time, the project highlights opportunities for revenue optimization, operational improvement, and strategic planning.
